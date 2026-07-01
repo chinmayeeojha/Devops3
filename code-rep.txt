@@ -1,20 +1,20 @@
 node {
            stage("Git Cloning"){
-                  git branch: 'main', url: 'https://github.com/Suraj-207/Devops3.git'
+                  git branch: 'main', url: 'https://github.com/chinmayeeojha/Devops3.git'
             }
 
             stage("ECR Login"){
-                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 656853518200.dkr.ecr.ap-south-1.amazonaws.com'
+                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 353661393394.dkr.ecr.ap-south-1.amazonaws.com'
             }
 
            stage("Building Docker Image"){
                 sh 'docker build -t node-app practice_node'
-                sh 'docker tag node-app:latest 656853518200.dkr.ecr.ap-south-1.amazonaws.com/suraj-cicd:${BUILD_NUMBER}'
+                sh 'docker tag node-app:latest 353661393394.dkr.ecr.ap-south-1.amazonaws.com/chinmayee-repository:${BUILD_NUMBER}'
                }
         
 
            stage("Push Image to ECR"){
-               sh 'docker push 656853518200.dkr.ecr.ap-south-1.amazonaws.com/suraj-cicd:${BUILD_NUMBER}'
+               sh 'docker push 353661393394.dkr.ecr.ap-south-1.amazonaws.com/chinmayee-repository:${BUILD_NUMBER}'
            }
         
         //   stage('Kubernetes Deployment') {
